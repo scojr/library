@@ -1,3 +1,5 @@
+const myLibrary = [];
+
 function updateLibrary() {
   const shelf = document.querySelector(".shelf");
   const books = document.querySelectorAll(".book");
