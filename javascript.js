@@ -9,17 +9,25 @@ function updateLibrary() {
   for (const book of myLibrary) {
     const title = document.createElement("h2");
     title.textContent = book.title;
+    title.setAttribute("class", "book-title");
     const author = document.createElement("h3");
-    author.textContent = book.author;
+    author.textContent = `by ${book.author}`;
+    author.setAttribute("class", "book-author");
     const pageCount = document.createElement("p");
-    pageCount.textContent = book.pageCount;
+    pageCount.textContent = `${book.pageCount} pages`;
+    pageCount.setAttribute("class", "book-page-count");
     const status = document.createElement("p");
+    status.setAttribute("class", "book-status");
     status.textContent = book.status ? "Read" : "Unread";
     const entry = document.createElement("div");
     entry.append(title, author, pageCount, status)
-    entry.setAttribute("class", "book");
+    entry.classList.add("book", book.status ? "status-read" : "status-unread");
     shelf.appendChild(entry);
   }
+  const addBookButton = document.createElement("div");
+  addBookButton.textContent = "+";
+  addBookButton.setAttribute("class", "add-book-button");
+  shelf.appendChild(addBookButton);
 }
 
 
@@ -46,3 +54,5 @@ addBookToLibrary('Moby-Dick', 'Herman Melville', 720, false);
 addBookToLibrary('The Adventures of Huckleberry Finn', 'Mark Twain', 327, true);
 
 console.log(myLibrary[0].info());
+
+updateLibrary()
