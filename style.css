@@ -63,6 +63,7 @@ body {
 
 .book-title {
   grid-column: 1 / 3;
+  grid-row: 1 / 2;
   text-align: center;
   align-self: center;
   font-size: minmax(1em, 2em);
@@ -82,6 +83,18 @@ body {
 .book-status {
   grid-column: 2 / 3;
   justify-self: end;
+}
+
+.options-button {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  align-self: baseline;
+  justify-self: end;
+  border: none;
+  width: min-content;
+  background-color: transparent;
+  opacity: 25%;
+  visibility: hidden;
 }
 
 .book-author,
@@ -120,5 +133,13 @@ body {
 .book:hover {
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset, rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-  ;
+
+  .options-button {
+    visibility: visible;
+  }
+}
+
+.options-button:hover {
+  cursor: pointer;
+  opacity: 100%;
 }
