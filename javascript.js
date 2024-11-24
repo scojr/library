@@ -10,18 +10,27 @@ function updateLibrary() {
     const title = document.createElement("h2");
     title.textContent = book.title;
     title.setAttribute("class", "book-title");
+
     const author = document.createElement("h3");
     author.textContent = `by ${book.author}`;
     author.setAttribute("class", "book-author");
+
     const pageCount = document.createElement("p");
     pageCount.textContent = `${book.pageCount} pages`;
     pageCount.setAttribute("class", "book-page-count");
+
     const status = document.createElement("p");
     status.setAttribute("class", "book-status");
     status.textContent = book.status ? "Read" : "Unread";
+
     const entry = document.createElement("div");
     entry.append(title, author, pageCount, status)
     entry.classList.add("book", book.status ? "status-read" : "status-unread");
+
+    const bookTitle = book.title;
+    const bookID = bookTitle.replace(/ /g, "-").toLowerCase();
+    entry.setAttribute('id', `${bookID}`)
+
     shelf.appendChild(entry);
   }
   const addBookButton = document.createElement("div");

@@ -7,7 +7,11 @@
 }
 
 :root {
-  --primary-color: orange;
+  --off-white: #F2EDD0;
+  --chocolate: #73330E;
+  --maroon: #9b311a;
+  --dark-crimson: #8C0E03;
+  --charcoal-black: #0D0D0D;
 }
 
 html {
@@ -24,7 +28,7 @@ ul[role="list"] {
 }
 
 img,
-picture,
+#0D0D0D picture,
 video,
 canvas,
 svg {
@@ -39,21 +43,18 @@ body {
   display: grid;
   max-width: 70vw;
   margin: 10% auto;
-  background-color: rgb(185, 168, 152);
-}
-
-h2 {
-  font-size: 2em;
+  background-color: var(--maroon);
+  color: var(--charcoal-black);
 }
 
 .shelf {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
 }
 
 .book {
-  background-color: rgb(255, 197, 189);
+  background-color: var(--off-white);
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 30px 30px;
@@ -64,6 +65,10 @@ h2 {
   grid-column: 1 / 3;
   text-align: center;
   align-self: center;
+  font-size: minmax(1em, 2em);
+  border-bottom: 3px double var(--charcoal-black);
+  border-top: 3px double var(--charcoal-black);
+  padding-top: 5px;
 }
 
 .book-author {
@@ -86,7 +91,8 @@ h2 {
 }
 
 .add-book-button {
-  background-color: rgba(255, 197, 189, 0.247);
+  background-color: rgba(13, 13, 13, 0.2);
+  color: rgba(242, 237, 208, 0.300);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,11 +101,24 @@ h2 {
 
 .book,
 .add-book-button {
-  min-height: 250px;
-  min-width: 250px;
+  --book-width: 200px;
+  width: var(--book-width);
+  height: calc(var(--book-width) * 1.6);
+  justify-self: center;
+  border-radius: 25px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
 }
 
 .add-book-button:hover {
   cursor: pointer;
-  background-color: rgba(180, 138, 132, 0.493);
+  background-color: rgba(13, 13, 13, 0.3);
+  color: rgba(242, 237, 208, 0.4);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.book:hover {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset, rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  ;
 }
