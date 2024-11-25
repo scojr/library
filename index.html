@@ -15,6 +15,42 @@
     </div>
   </div>
 
+  <div id="addBookModal" class="modal">
+
+    <div class="modal-form-content">
+
+      <form method="dialog">
+        <h2 class="form-header">Add Book to Library</h2>
+        <span class="close">&times;</span>
+
+        <div class="form-row">
+          <label>
+            Title:
+            <input type="text" id="title" name="title" placeholder="Alice's Adventures in Wonderland">
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            Author:
+            <input type="text" id="author" name="author" placeholder="Lewis Carroll">
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            Page Count:
+            <input type="tel" id="pages" name="pages" placeholder="320">
+          </label>
+          <label>
+            Read Status:
+            <input type="checkbox" id="status" name="status">
+          </label>
+        </div>
+        <button>Add Book</button>
+      </form>
+    </div>
+  </div>
 </body>
 
 </html>

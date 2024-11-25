@@ -143,3 +143,45 @@ body {
   cursor: pointer;
   opacity: 100%;
 }
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  background-color: hsla(0, 0%, 5%, 0.3);
+}
+
+.modal-form-content {
+  background-color: var(--off-white);
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid var(--chocolate);
+  width: 30%;
+  color: var(--charcoal-black);
+  border-radius: 10px;
+}
+
+.modal-form-content form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-header {
+  font-size: 2em;
+}
+
+.close {
+  color: var(--charcoal-black);
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover {
+  cursor: pointer;
+}
