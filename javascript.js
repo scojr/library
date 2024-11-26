@@ -1,5 +1,13 @@
 const myLibrary = [];
 
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, false);
+addBookToLibrary('1984', 'George Orwell', 368, true);
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', 281, false);
+addBookToLibrary('Moby-Dick', 'Herman Melville', 720, false);
+addBookToLibrary('The Adventures of Huckleberry Finn', 'Mark Twain', 327, true);
+
+updateLibrary()
+
 function updateLibrary() {
   const shelf = document.querySelector(".shelf");
   const books = document.querySelectorAll(".book");
@@ -47,7 +55,6 @@ function updateLibrary() {
   shelf.appendChild(addBookButton);
 }
 
-
 function Book(title, author, pageCount, status) {
   this.title = title;
   this.author = author;
@@ -64,12 +71,5 @@ function addBookToLibrary(title, author, pageCount, status) {
   myLibrary.push(new Book(title, author, pageCount, status));
 }
 
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, false);
-addBookToLibrary('1984', 'George Orwell', 368, true);
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', 281, false);
-addBookToLibrary('Moby-Dick', 'Herman Melville', 720, false);
-addBookToLibrary('The Adventures of Huckleberry Finn', 'Mark Twain', 327, true);
-
 console.log(myLibrary[0].info());
 
-updateLibrary()
