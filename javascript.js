@@ -71,16 +71,30 @@ function addBookToLibrary(title, author, pageCount, status) {
   myLibrary.push(new Book(title, author, pageCount, status));
 }
 
-const addBookForm = document.querySelector(".modal");
+const addBookModal = document.querySelector(".modal");
+const addBookForm = document.querySelector(".add-book-form");
+
 const addBookButton = document.querySelector(".add-book-button");
 addBookButton.addEventListener("click", function (e) {
-  addBookForm.style.visibility = "visible";
+  addBookModal.style.visibility = "visible";
 });
 
 const bookFormClose = document.querySelector(".close");
-bookFormClose.addEventListener("click", (e) => {
-  addBookForm.style.visibility = "hidden";
+const bookFormCancel = document.querySelector(".cancel-button");
+const bookFormSubmit = document.querySelector(".submit-button");
+
+bookFormCancel.addEventListener("click", closeBookForm);
+bookFormClose.addEventListener("click", closeBookForm);
+bookFormSubmit.addEventListener("click", closeBookForm);
+addBookModal.addEventListener("click", () => {
+  if (!addBookForm.matches(':hover')) {
+    closeBookForm();
+  }
 });
+
+function closeBookForm() {
+  addBookModal.style.visibility = "hidden";
+}
 
 console.log(myLibrary[0].info());
 
