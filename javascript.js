@@ -1,19 +1,18 @@
 const myLibrary = [];
 
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, false);
-addBookToLibrary('1984', 'George Orwell', 368, true);
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', 281, false);
-addBookToLibrary('Moby-Dick', 'Herman Melville', 720, false);
-addBookToLibrary('The Adventures of Huckleberry Finn', 'Mark Twain', 327, true);
+function addTempBooks() {
+  addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, false);
+  addBookToLibrary('1984', 'George Orwell', 368, true);
+  addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', 281, false);
+  addBookToLibrary('Moby-Dick', 'Herman Melville', 720, false);
+  addBookToLibrary('The Adventures of Huckleberry Finn', 'Mark Twain', 327, true);
+}
 
-updateLibrary()
+addTempBooks();
 
 function updateLibrary() {
   const shelf = document.querySelector(".shelf");
-  const books = document.querySelectorAll(".book");
-  for (const book of books) {
-    book.remove()
-  }
+  clearLibrary();
   for (const book of myLibrary) {
     const title = document.createElement("h2");
     title.textContent = book.title;
@@ -46,13 +45,24 @@ function updateLibrary() {
     const bookTitle = book.title;
     const bookID = bookTitle.replace(/ /g, "-").toLowerCase();
     entry.setAttribute('id', bookID)
-
     shelf.appendChild(entry);
   }
   const addBookButton = document.createElement("div");
   addBookButton.textContent = "+";
   addBookButton.className = ("class", "add-book-button");
   shelf.appendChild(addBookButton);
+  addBookButton.addEventListener("click", function (e) {
+    addBookModal.style.visibility = "visible";
+  });
+}
+
+function clearLibrary() {
+  const shelf = document.querySelector(".shelf");
+  shelfItems = Array.from(shelf.children);
+  for (items of shelfItems) {
+    items.remove();
+  }
+
 }
 
 function Book(title, author, pageCount, status) {
@@ -69,31 +79,44 @@ Book.prototype.info = function () {
 
 function addBookToLibrary(title, author, pageCount, status) {
   myLibrary.push(new Book(title, author, pageCount, status));
+  updateLibrary();
+}
+
+const bookFormSubmit = document.querySelector(".submit-button");
+bookFormSubmit.addEventListener("click", takeFormInput);
+
+function takeFormInput(event) {
+  event.preventDefault();
+  const title = document.querySelector("#title").value;
+  const author = document.querySelector("#author").value;
+  const pageCount = document.querySelector("#pages").value;
+  const status = document.querySelector("#status").checked;
+  console.log(title, author, pageCount, status);
+  addBookToLibrary(title, author, pageCount, status);
+  updateLibrary();
+  closeBookForm();
 }
 
 const addBookModal = document.querySelector(".modal");
 const addBookForm = document.querySelector(".add-book-form");
 
-const addBookButton = document.querySelector(".add-book-button");
-addBookButton.addEventListener("click", function (e) {
-  addBookModal.style.visibility = "visible";
-});
-
 const bookFormClose = document.querySelector(".close");
 const bookFormCancel = document.querySelector(".cancel-button");
-const bookFormSubmit = document.querySelector(".submit-button");
 
-bookFormCancel.addEventListener("click", closeBookForm);
 bookFormClose.addEventListener("click", closeBookForm);
-bookFormSubmit.addEventListener("click", closeBookForm);
 addBookModal.addEventListener("click", () => {
   if (!addBookForm.matches(':hover')) {
     closeBookForm();
   }
 });
+bookFormCancel.addEventListener("click", (event) => {
+  event.preventDefault();
+  closeBookForm();
+});
 
 function closeBookForm() {
   addBookModal.style.visibility = "hidden";
+  addBookForm.reset();
 }
 
 console.log(myLibrary[0].info());
