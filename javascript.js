@@ -71,5 +71,16 @@ function addBookToLibrary(title, author, pageCount, status) {
   myLibrary.push(new Book(title, author, pageCount, status));
 }
 
+const addBookForm = document.querySelector(".modal");
+const addBookButton = document.querySelector(".add-book-button");
+addBookButton.addEventListener("click", function (e) {
+  addBookForm.style.visibility = "visible";
+});
+
+const bookFormClose = document.querySelector(".close");
+bookFormClose.addEventListener("click", (e) => {
+  addBookForm.style.visibility = "hidden";
+});
+
 console.log(myLibrary[0].info());
 
