@@ -181,44 +181,95 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
 }
 
 .add-book-form .form-section {
-  font-size: 1.2rem;
-  word-wrap: normal;
-  white-space: nowrap;
+  font-size: 1.3rem;
 }
 
 .form-section {
   display: grid;
-  grid-template-columns: repeat(4, min-content);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 10px;
+  grid-template-columns: min-content 60px min-content min-content;
+  grid-template-rows: repeat(4, 1fr) 0.5fr 1fr;
+  column-gap: 12px;
+  row-gap: 0px;
 }
 
-.form-title,
-.form-author,
+.form-title {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  align-self: end;
+}
+
+#title {
+  grid-column: 1 / 5;
+  grid-row: 2 / 3;
+}
+
+.form-author {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+  align-self: end;
+}
+
+#author {
+  grid-column: 1 / 5;
+  grid-row: 4 / 5;
+}
+
 .form-pages {
   grid-column: 1 / 2;
-  justify-self: end;
-}
-
-#title,
-#author {
-  grid-column: 2 / 5;
+  grid-row: 6 / 7;
 }
 
 #pages {
   grid-column: 2 / 3;
+  grid-row: 6 / 7;
+}
+
+.form-status {
+  grid-column: 3 / 4;
+  grid-row: 6 / 7;
+}
+
+
+#status {
+  grid-column: 4 / 5;
+  grid-row: 6 / 7;
 }
 
 .modal-form-content input {
-  border-radius: 15px;
+  border-radius: 6px;
   font-family: inherit;
   padding: 3px 0 0 8px;
   border: 1px solid var(--charcoal-black);
   height: 1.4em;
   font-size: 1.2rem;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  background-color: rgb(247, 245, 239);
+}
+
+.required-label {
+  position: relative;
+  top: 6px;
+  left: 142px;
+  visibility: hidden;
+}
+
+.required-label::after {
+  position: absolute;
+  font-size: 0.9rem;
+  color: rgb(200, 0, 0);
+  content: "* This is a required field.";
+  visibility: hidden;
+}
+
+.modal-form-content input:invalid {
+  border: 1px solid rgb(200, 0, 0);
 }
 
 .form-header {
@@ -227,7 +278,8 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 3px double var(--charcoal-black);
-  margin-bottom: 16px;
+  padding-bottom: 0px;
+  margin-bottom: 15px;
 }
 
 #status {
@@ -251,7 +303,7 @@ body {
   width: min-content;
   padding: 7px 25px 3px;
   margin: 0 auto;
-  margin-top: 12px;
+  margin-top: 15px;
 }
 
 .add-book-form button:hover {
@@ -268,8 +320,8 @@ body {
   font-size: 28px;
   font-weight: bold;
   position: absolute;
-  top: -42px;
-  left: 425px;
+  top: -45px;
+  left: 351px;
 }
 
 .close::before {
