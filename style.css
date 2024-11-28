@@ -265,11 +265,7 @@ input[type="number"]:focus {
   font-size: 0.9rem;
   color: rgb(200, 0, 0);
   content: "* This is a required field.";
-  visibility: hidden;
-}
-
-.modal-form-content input:invalid {
-  border: 1px solid rgb(200, 0, 0);
+  visibility: var(--pseudo-visibility, hidden);
 }
 
 .form-header {

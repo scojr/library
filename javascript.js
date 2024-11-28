@@ -87,14 +87,24 @@ bookFormSubmit.addEventListener("click", takeFormInput);
 
 function takeFormInput(event) {
   event.preventDefault();
-  const title = document.querySelector("#title").value;
-  const author = document.querySelector("#author").value;
-  const pageCount = document.querySelector("#pages").value;
-  const status = document.querySelector("#status").checked;
-  console.log(title, author, pageCount, status);
-  addBookToLibrary(title, author, pageCount, status);
-  updateLibrary();
-  closeBookForm();
+  const input = document.querySelector("#title");
+  const requiredLabel = document.querySelector(".required-label")
+  inputState = input.validity;
+
+  if (inputState.valid) {
+    event.preventDefault();
+    const title = document.querySelector("#title").value;
+    const author = document.querySelector("#author").value;
+    const pageCount = document.querySelector("#pages").value;
+    const status = document.querySelector("#status").checked;
+    console.log(title, author, pageCount, status);
+    addBookToLibrary(title, author, pageCount, status);
+    updateLibrary();
+    closeBookForm();
+  } else {
+    requiredLabel.style.setProperty('--pseudo-visibility', 'visible');
+    input.style.border = "1px solid rgb(200, 0, 0)"
+  }
 }
 
 const addBookModal = document.querySelector(".modal");
@@ -117,6 +127,8 @@ bookFormCancel.addEventListener("click", (event) => {
 function closeBookForm() {
   addBookModal.style.visibility = "hidden";
   addBookForm.reset();
+  const requiredLabel = document.querySelector(".required-label")
+  requiredLabel.style.setProperty('--pseudo-visibility', 'hidden');
 }
 
 console.log(myLibrary[0].info());
