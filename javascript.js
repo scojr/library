@@ -18,12 +18,22 @@ function updateLibrary() {
     title.textContent = book.title;
     title.className = "book-title";
 
+
     const author = document.createElement("h3");
-    author.textContent = `by ${book.author}`;
+    if (book.author) {
+      author.textContent = `by ${book.author}`;
+    } else {
+      author.textContent = "";
+    }
     author.className = "book-author";
 
+
     const pageCount = document.createElement("p");
-    pageCount.textContent = `${book.pageCount} pages`;
+    if (book.pageCount) {
+      pageCount.textContent = `${book.pageCount} pages`;
+    } else {
+      pageCount.textContent = "";
+    }
     pageCount.className = "book-page-count";
 
     const status = document.createElement("p");
