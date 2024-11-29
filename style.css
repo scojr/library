@@ -310,9 +310,25 @@ input[type="number"]:focus {
   margin-top: 15px;
 }
 
-.add-book-form button:hover {
+.submit-button:hover,
+.cancel-button:hover {
   cursor: pointer;
   background-color: #5e0b03;
+}
+
+.delete-button.hidden {
+  position: absolute;
+  visibility: hidden;
+}
+
+.delete-button.visible {
+  position: relative;
+  visibility: visible;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+  background-color: red;
 }
 
 .close-parent {

@@ -141,6 +141,8 @@ let editBookEntry = "";
 function openBookForm(event) {
   if (event.currentTarget.className == "options-button") {
     editBookEntry = myLibrary.find((book) => book.ID === event.currentTarget.parentElement.id);
+    document.querySelector(".delete-button").classList.replace("hidden", "visible");
+    document.querySelector(".form-header").textContent = "Edit Book Entry";
     document.querySelector("#title").value = editBookEntry.title;
     document.querySelector("#author").value = editBookEntry.author;
     document.querySelector("#pages").value = editBookEntry.pageCount;
@@ -153,6 +155,14 @@ const addBookModal = document.querySelector(".modal");
 const addBookForm = document.querySelector(".add-book-form");
 const bookFormClose = document.querySelector(".close");
 const bookFormCancel = document.querySelector(".cancel-button");
+const bookDeleteEntry = document.querySelector(".delete-button");
+bookDeleteEntry.addEventListener("click", (event) => {
+  event.preventDefault();
+  const bookIndex = myLibrary.indexOf(editBookEntry);
+  myLibrary.splice(bookIndex, 1);
+  closeBookForm();
+  updateLibrary();
+});
 
 bookFormClose.addEventListener("click", closeBookForm);
 
@@ -173,7 +183,9 @@ function closeBookForm() {
   const requiredLabel = document.querySelector(".required-label")
   requiredLabel.style.setProperty('--duplicate-title-warning-visiblity', 'hidden');
   requiredLabel.style.setProperty('--required-warning-visibility', 'hidden');
+  document.querySelector(".delete-button").classList.replace("visible", "hidden");
   document.querySelector("#title").style.border = "1px solid var(--charcoal-black)";
+  document.querySelector(".form-header").textContent = "Add Book to Library";
 }
 
 console.log(myLibrary[0].info());
