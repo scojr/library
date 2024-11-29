@@ -139,7 +139,6 @@ body {
 }
 
 .book:hover {
-  cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset, rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 
   .options-button {
@@ -265,7 +264,16 @@ input[type="number"]:focus {
   font-size: 0.9rem;
   color: rgb(200, 0, 0);
   content: "* This is a required field.";
-  visibility: var(--pseudo-visibility, hidden);
+  visibility: var(--required-warning-visibility, hidden);
+}
+
+.required-label::before {
+  position: absolute;
+  left: -60px;
+  font-size: 0.9rem;
+  color: rgb(200, 0, 0);
+  content: "This title is already in your library.";
+  visibility: var(--duplicate-title-warning-visiblity, hidden);
 }
 
 .form-header {
