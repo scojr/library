@@ -72,7 +72,7 @@ function clearLibrary() {
 
 function filterBookName(name, formatted) {
   if (formatted) {
-    return name.replace(/[^a-zA-Z0-9 ]/g, "");
+    return name.replace(/[^a-zA-Z0-9-. ]/g, "");
   } else {
     return name.replace(/ /g, "-").toLowerCase().replace(/[^a-zA-Z0-9-]/g, "");
   }
@@ -106,34 +106,33 @@ function takeFormInput(event) {
   const requiredLabel = document.querySelector(".required-label")
   inputState = input.validity;
 
-  if (editBookEntry.title === document.querySelector("#title").value) {
-    requiredLabel.style.setProperty('--duplicate-title-warning-visiblity', 'visible');
-    input.style.border = "1px solid red"
-  } else {
-    if (inputState.valid) {
-      if (editBookEntry) {
-        editBookEntry.title = filterBookName(document.querySelector("#title").value, true);
-        editBookEntry.author = filterBookName(document.querySelector("#author").value, true);
-        editBookEntry.pageCount = document.querySelector("#pages").value;
-        editBookEntry.status = document.querySelector("#status").checked;
-        editBookEntry.ID = filterBookName(document.querySelector("#title").value);
-        updateLibrary();
-        closeBookForm();
+  if (inputState.valid) {
+    if (editBookEntry) {
+      editBookEntry.title = filterBookName(document.querySelector("#title").value, true);
+      editBookEntry.author = document.querySelector("#author").value;
+      editBookEntry.pageCount = document.querySelector("#pages").value;
+      editBookEntry.status = document.querySelector("#status").checked;
+      editBookEntry.ID = filterBookName(document.querySelector("#title").value);
+      updateLibrary();
+      closeBookForm();
+    } else {
+      if (myLibrary.some(book => book.ID === filterBookName(document.querySelector("#title").value))) {
+        requiredLabel.style.setProperty('--duplicate-title-warning-visiblity', 'visible');
+        input.style.border = "1px solid red"
       } else {
         event.preventDefault();
         const title = document.querySelector("#title").value;
         const author = document.querySelector("#author").value;
         const pageCount = document.querySelector("#pages").value;
         const status = document.querySelector("#status").checked;
-        console.log(title, author, pageCount, status);
         addBookToLibrary(title, author, pageCount, status);
         updateLibrary();
         closeBookForm();
       }
-    } else {
-      requiredLabel.style.setProperty('--required-warning-visibility', 'visible');
-      input.style.border = "1px solid red"
     }
+  } else {
+    requiredLabel.style.setProperty('--required-warning-visibility', 'visible');
+    input.style.border = "1px solid red"
   }
 }
 
