@@ -153,20 +153,22 @@ body {
 
 .modal {
   position: fixed;
-  z-index: 1;
+  top: 0;
   left: 0;
+  bottom: 0;
   right: 0;
-  width: 100%;
-  height: 100%;
   overflow: auto;
   background-color: black;
   background-color: hsla(0, 0%, 5%, 0.3);
   visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.modal-form-content {
+.modal-content {
+  position: absolute;
   background-color: var(--off-white);
-  margin: 15% auto;
   padding: 20px;
   border: 1px solid var(--chocolate);
   width: min-content;
@@ -175,7 +177,7 @@ body {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.add-book-form {
+.modal-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -183,11 +185,11 @@ body {
   white-space: nowrap;
 }
 
-.add-book-form .form-section {
+.modal-form .modal-section {
   font-size: 1.3rem;
 }
 
-.form-section {
+.modal-section {
   display: grid;
   grid-template-columns: min-content 60px min-content min-content;
   grid-template-rows: repeat(4, 1fr) 0.5fr 1fr;
@@ -238,7 +240,7 @@ body {
   grid-row: 6 / 7;
 }
 
-.modal-form-content input {
+.modal-content input {
   border-radius: 6px;
   font-family: inherit;
   padding: 3px 0 0 8px;
@@ -276,7 +278,7 @@ input[type="number"]:focus {
   visibility: var(--duplicate-title-warning-visiblity, hidden);
 }
 
-.form-header {
+.modal-header {
   font-size: 2rem;
   display: flex;
   justify-content: space-between;
@@ -292,12 +294,12 @@ input[type="number"]:focus {
   align-self: auto;
 }
 
-.add-book-form button,
+.modal-form button,
 .modal-form-content input:not([type=checkbox]) {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
-.add-book-form button {
+.modal-form button {
   border: 1px solid var(--charcoal-black);
   background-color: var(--dark-crimson);
   color: white;
@@ -311,7 +313,8 @@ input[type="number"]:focus {
 }
 
 .submit-button:hover,
-.cancel-button:hover {
+.cancel-button:hover,
+.confirm-button:hover {
   cursor: pointer;
   background-color: #5e0b03;
 }
@@ -326,38 +329,33 @@ input[type="number"]:focus {
   visibility: visible;
 }
 
+#confirmDeleteModal .modal-content {
+  min-width: 450px;
+}
+
+.alert-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.confirm-header {
+  padding-top: 2px;
+}
+
+.confirm-alert-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.confirm-placeholder {
+  font-size: 1.6rem;
+  border-bottom: 3px double var(--charcoal-black);
+  border-top: 3px double var(--charcoal-black);
+  margin: 20px 0 20px 0;
+}
+
 .delete-button:hover {
   cursor: pointer;
   background-color: red;
-}
-
-.close-parent {
-  position: absolute;
-}
-
-.close {
-  color: var(--charcoal-black);
-  font-size: 28px;
-  font-weight: bold;
-  position: absolute;
-  top: -45px;
-  left: 351px;
-}
-
-.close::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background-color: rgba(0, 0, 0, 0.200);
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  transform: translate(-50%, -64%);
-  visibility: hidden;
-}
-
-.close:hover::before {
-  cursor: pointer;
-  visibility: inherit;
 }

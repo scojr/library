@@ -151,26 +151,46 @@ function openBookForm(event) {
   addBookModal.style.visibility = "visible";
 }
 
-const addBookModal = document.querySelector(".modal");
+const addBookModal = document.querySelector("#addBookModal");
+const confirmDeleteModal = document.querySelector("#confirmDeleteModal");
 const addBookForm = document.querySelector(".add-book-form");
-const bookFormClose = document.querySelector(".close");
 const bookFormCancel = document.querySelector(".cancel-button");
 const bookDeleteEntry = document.querySelector(".delete-button");
+
 bookDeleteEntry.addEventListener("click", (event) => {
   event.preventDefault();
-  const bookIndex = myLibrary.indexOf(editBookEntry);
-  myLibrary.splice(bookIndex, 1);
-  closeBookForm();
-  updateLibrary();
+  addBookModal.style.visibility = "hidden";
+  confirmDeleteModal.style.visibility = "visible";
+  document.querySelector(".delete-button").classList.replace("visible", "hidden");
+  confirmDeleteModal.querySelector(".confirm-placeholder").textContent = `${editBookEntry.title} by ${editBookEntry.author}`;
+
+  document.querySelector(".cancel-delete-button").addEventListener("click", (event) => {
+    event.preventDefault();
+    closeBookForm();
+  });
+
+  document.querySelector(".confirm-button").addEventListener("click", (event) => {
+    event.preventDefault();
+    const bookIndex = myLibrary.indexOf(editBookEntry);
+    myLibrary.splice(bookIndex, 1);
+    closeBookForm();
+    updateLibrary();
+  });
+
 });
 
-bookFormClose.addEventListener("click", closeBookForm);
-
 addBookModal.addEventListener("mousedown", () => {
-  if (!addBookForm.matches(':hover')) {
+  if (!addBookModal.querySelector(".modal-content").matches(':hover')) {
     closeBookForm();
   }
 });
+
+confirmDeleteModal.addEventListener("mousedown", () => {
+  if (!confirmDeleteModal.querySelector(".modal-content").matches(':hover')) {
+    closeBookForm();
+  }
+});
+
 bookFormCancel.addEventListener("click", (event) => {
   event.preventDefault();
   closeBookForm();
@@ -179,6 +199,7 @@ bookFormCancel.addEventListener("click", (event) => {
 function closeBookForm() {
   editBookEntry = "";
   addBookModal.style.visibility = "hidden";
+  confirmDeleteModal.style.visibility = "hidden";
   addBookForm.reset();
   const requiredLabel = document.querySelector(".required-label")
   requiredLabel.style.setProperty('--duplicate-title-warning-visiblity', 'hidden');

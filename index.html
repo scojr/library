@@ -17,12 +17,11 @@
 
   <div id="addBookModal" class="modal">
 
-    <div class="modal-form-content">
-      <form class="add-book-form">
-        <h2 class="form-header">Add Book to Library<span class="close-parent"><span class="close">&times;</span></span>
-        </h2>
+    <div class="modal-form-content modal-content">
+      <form class="add-book-form modal-form">
+        <h2 class="form-header modal-header">Add Book to Library</h2>
 
-        <div class="form-section">
+        <div class="form-section modal-section">
           <label for="title" class="form-title">Title:<span class="required-label"
               aria-label="required">*</span></label>
           <input type="text" id="title" name="title" placeholder="Alice's Adventures in Wonderland" required>
@@ -43,6 +42,24 @@
         </div>
 
       </form>
+    </div>
+  </div>
+
+  <div id="confirmDeleteModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-form">
+        <div class="alert-header">
+          <img src="images/alert-circle.svg" alt="alert" class="confirm-alert-icon">
+          <h2 class="confirm-header">Delete Title From Library?</h2>
+        </div>
+
+        <h3 class="confirm-header confirm-placeholder">"Placeholder"</h3>
+        <div class="buttons">
+          <button class="confirm-button">Yes, delete it</button>
+          <button class="cancel-button cancel-delete-button">Cancel</button>
+        </div>
+
+      </div>
     </div>
   </div>
 </body>
