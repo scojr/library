@@ -163,19 +163,15 @@ bookDeleteEntry.addEventListener("click", (event) => {
   document.querySelector(".delete-button").classList.replace("visible", "hidden");
   confirmDeleteModal.querySelector(".confirm-placeholder").textContent = `${editBookEntry.title} by ${editBookEntry.author}`;
 
-  document.querySelector(".cancel-delete-button").addEventListener("click", (event) => {
-    event.preventDefault();
+  document.querySelector(".cancel-delete-button").addEventListener("click", () => {
     closeBookForm();
   });
+});
 
-  document.querySelector(".confirm-button").addEventListener("click", (event) => {
-    event.preventDefault();
-    const bookIndex = myLibrary.indexOf(editBookEntry);
-    myLibrary.splice(bookIndex, 1);
-    closeBookForm();
-    updateLibrary();
-  });
-
+document.querySelector(".confirm-button").addEventListener("click", () => {
+  myLibrary.splice(myLibrary.indexOf(editBookEntry), 1);
+  closeBookForm();
+  updateLibrary();
 });
 
 addBookModal.addEventListener("mousedown", () => {
