@@ -10,15 +10,14 @@ class Book {
   }
 }
 
-function addTempBooks() {
+(function sampleBooks() {
   addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, false);
   addBookToLibrary('1984', 'George Orwell', 368, true);
   addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', 281, false);
   addBookToLibrary('Moby-Dick', 'Herman Melville', 720, false);
   addBookToLibrary('The Adventures of Huckleberry Finn', 'Mark Twain', 327, true);
-}
+})();
 
-addTempBooks();
 
 function updateLibrary() {
   const shelf = document.querySelector(".shelf");
