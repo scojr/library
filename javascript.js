@@ -1,5 +1,15 @@
 const myLibrary = [];
 
+class Book {
+  constructor(title, author, pageCount, status, ID) {
+    this.title = title;
+    this.author = author;
+    this.pageCount = pageCount;
+    this.status = status;
+    this.ID = ID;
+  }
+}
+
 function addTempBooks() {
   addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, false);
   addBookToLibrary('1984', 'George Orwell', 368, true);
@@ -76,19 +86,6 @@ function filterBookName(name, formatted) {
   } else {
     return name.replace(/ /g, "-").toLowerCase().replace(/[^a-zA-Z0-9-]/g, "");
   }
-}
-
-function Book(title, author, pageCount, status) {
-  this.title = title;
-  this.author = author;
-  this.pageCount = pageCount;
-  this.status = status;
-  this.ID = filterBookName(title);
-}
-
-Book.prototype.info = function () {
-  return (`${this.title} by ${this.author}, ${this.pageCount} pages, ` + readStatus())
-  function readStatus() { if (this.status) return "read."; else return "not read yet." }
 }
 
 function addBookToLibrary(title, author, pageCount, status) {
@@ -204,5 +201,4 @@ function closeBookForm() {
   document.querySelector(".form-header").textContent = "Add Book to Library";
 }
 
-console.log(myLibrary[0].info());
 

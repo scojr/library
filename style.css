@@ -91,6 +91,8 @@ body {
   border-bottom: 3px double var(--charcoal-black);
   border-top: 3px double var(--charcoal-black);
   padding-top: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .book-author {
