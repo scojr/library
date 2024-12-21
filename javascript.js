@@ -6,7 +6,7 @@ class Book {
     this.author = author;
     this.pageCount = pageCount;
     this.status = status;
-    this.ID = ID;
+    this.ID = filterBookName(title);
   }
 }
 
@@ -200,5 +200,3 @@ function closeBookForm() {
   document.querySelector("#title").style.border = "1px solid var(--charcoal-black)";
   document.querySelector(".form-header").textContent = "Add Book to Library";
 }
-
-
